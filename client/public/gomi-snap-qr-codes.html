@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOMI SNAP - QR Codes for Distribution</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    
+    .page {
+      background: white;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      page-break-after: always;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    
+    .tagline {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #ecfdf5, #eff6ff);
+      border-radius: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .qr-code {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .qr-code img {
+      display: block;
+      width: 200px;
+      height: 200px;
+    }
+    
+    .location-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    
+    .location-name-ja {
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+    
+    .instructions {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .instruction-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .instruction-row:last-child {
+      border-bottom: none;
+    }
+    
+    .step-number {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    
+    .step-text {
+      font-size: 14px;
+      color: #374151;
+    }
+    
+    .step-text-ja {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #9ca3af;
+      font-size: 12px;
+    }
+    
+    .print-button {
+      display: block;
+      margin: 20px auto;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+    
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      .print-button {
+        display: none;
+      }
+      
+      .no-print {
+        display: none;
+      }
+    }
+    
+    .multi-lang {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 16px;
+      text-align: center;
+    }
+    
+    .lang-item {
+      font-size: 11px;
+      color: #6b7280;
+      padding: 4px 8px;
+      background: #f9fafb;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <button class="print-button no-print" onclick="window.print()">
+    Print QR Codes / 印刷する
+  </button>
+
+  <!-- Page 1: General QR Code -->
+  <div class="page">
+    <div class="header">
+      <div class="logo">GOMI SNAP</div>
+      <div class="tagline">AI-Powered Trash Sorting Assistant / AIゴミ分別アシスタント</div>
+    </div>
+    
+    <div class="qr-container">
+      <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://gomi-snap.replit.app/" alt="GOMI SNAP QR Code">
+      </div>
+      <div class="location-name">Scan to Sort Your Trash!</div>
+      <div class="location-name-ja">スキャンしてゴミを分別しよう！</div>
+      
+      <div class="instructions">
+        <div class="instruction-row">
+          <div class="step-number">1</div>
+          <div>
+            <div class="step-text">Scan this QR code with your phone</div>
+            <div class="step-text-ja">スマホでQRコードをスキャン</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">2</div>
+          <div>
+            <div class="step-text">Take a photo of your trash item</div>
+            <div class="step-text-ja">ゴミの写真を撮る</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">3</div>
+          <div>
+            <div class="step-text">Get instant sorting instructions!</div>
+            <div class="step-text-ja">すぐに分別方法がわかる！</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="multi-lang">
+        <div class="lang-item">English</div>
+        <div class="lang-item">日本語</div>
+        <div class="lang-item">中文</div>
+        <div class="lang-item">한국어</div>
+        <div class="lang-item">Bahasa</div>
+        <div class="lang-item">မြန်မာ</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      GOMI SNAP - Helping Beppu go green, one scan at a time!<br>
+      別府をもっとエコに、一つのスキャンから！
+    </div>
+  </div>
+
+  <!-- Page 2: APU House 3F Kitchen -->
+  <div class="page">
+    <div class="header">
+      <div class="logo">GOMI SNAP</div>
+      <div class="tagline">APU House 3F Kitchen / APハウス3階キッチン</div>
+    </div>
+    
+    <div class="qr-container">
+      <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://gomi-snap.replit.app/?loc=aphouse3f" alt="APU House 3F QR Code">
+      </div>
+      <div class="location-name">APU House 3F Kitchen</div>
+      <div class="location-name-ja">APハウス 3階キッチン</div>
+      
+      <div class="instructions">
+        <div class="instruction-row">
+          <div class="step-number">1</div>
+          <div>
+            <div class="step-text">Scan this QR code with your phone</div>
+            <div class="step-text-ja">スマホでQRコードをスキャン</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">2</div>
+          <div>
+            <div class="step-text">Take a photo of your trash item</div>
+            <div class="step-text-ja">ゴミの写真を撮る</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">3</div>
+          <div>
+            <div class="step-text">Get instant sorting instructions!</div>
+            <div class="step-text-ja">すぐに分別方法がわかる！</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="multi-lang">
+        <div class="lang-item">English</div>
+        <div class="lang-item">日本語</div>
+        <div class="lang-item">中文</div>
+        <div class="lang-item">한국어</div>
+        <div class="lang-item">Bahasa</div>
+        <div class="lang-item">မြန်မာ</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      Location tracked for campus sustainability metrics<br>
+      キャンパスサステナビリティ指標のための位置追跡
+    </div>
+  </div>
+
+  <!-- Page 3: APU Campus -->
+  <div class="page">
+    <div class="header">
+      <div class="logo">GOMI SNAP</div>
+      <div class="tagline">APU Campus / APUキャンパス</div>
+    </div>
+    
+    <div class="qr-container">
+      <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://gomi-snap.replit.app/?loc=apu_campus" alt="APU Campus QR Code">
+      </div>
+      <div class="location-name">APU Campus</div>
+      <div class="location-name-ja">APUキャンパス</div>
+      
+      <div class="instructions">
+        <div class="instruction-row">
+          <div class="step-number">1</div>
+          <div>
+            <div class="step-text">Scan this QR code with your phone</div>
+            <div class="step-text-ja">スマホでQRコードをスキャン</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">2</div>
+          <div>
+            <div class="step-text">Take a photo of your trash item</div>
+            <div class="step-text-ja">ゴミの写真を撮る</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">3</div>
+          <div>
+            <div class="step-text">Get instant sorting instructions!</div>
+            <div class="step-text-ja">すぐに分別方法がわかる！</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="multi-lang">
+        <div class="lang-item">English</div>
+        <div class="lang-item">日本語</div>
+        <div class="lang-item">中文</div>
+        <div class="lang-item">한국어</div>
+        <div class="lang-item">Bahasa</div>
+        <div class="lang-item">မြန်မာ</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      Location tracked for campus sustainability metrics<br>
+      キャンパスサステナビリティ指標のための位置追跡
+    </div>
+  </div>
+
+  <!-- Page 4: Downtown Beppu -->
+  <div class="page">
+    <div class="header">
+      <div class="logo">GOMI SNAP</div>
+      <div class="tagline">Downtown Beppu / 別府駅前</div>
+    </div>
+    
+    <div class="qr-container">
+      <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://gomi-snap.replit.app/?loc=downtown_beppu" alt="Downtown Beppu QR Code">
+      </div>
+      <div class="location-name">Downtown Beppu</div>
+      <div class="location-name-ja">別府駅前エリア</div>
+      
+      <div class="instructions">
+        <div class="instruction-row">
+          <div class="step-number">1</div>
+          <div>
+            <div class="step-text">Scan this QR code with your phone</div>
+            <div class="step-text-ja">スマホでQRコードをスキャン</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">2</div>
+          <div>
+            <div class="step-text">Take a photo of your trash item</div>
+            <div class="step-text-ja">ゴミの写真を撮る</div>
+          </div>
+        </div>
+        <div class="instruction-row">
+          <div class="step-number">3</div>
+          <div>
+            <div class="step-text">Get instant sorting instructions!</div>
+            <div class="step-text-ja">すぐに分別方法がわかる！</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="multi-lang">
+        <div class="lang-item">English</div>
+        <div class="lang-item">日本語</div>
+        <div class="lang-item">中文</div>
+        <div class="lang-item">한국어</div>
+        <div class="lang-item">Bahasa</div>
+        <div class="lang-item">မြန်မာ</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      Helping international residents sort trash correctly!<br>
+      外国人住民のゴミ分別をサポート！
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+.env.*
+attached_assets/
+**/*.mp4
+**/*.pdf
+**/*.pptx
+.cache/
