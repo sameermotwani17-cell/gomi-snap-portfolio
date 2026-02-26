@@ -60,7 +60,7 @@ Built with passion by APU students for the **Hult Prize 2025**:
 - **Sameer** - Founder & CEO/CTO
 - **Momoka** - Co-CEO
 - **Ellysen** - COO
-- **Foday** - CFO
+- **Makarem** - CFO
 - **Sami** - Videographer & Photographer
 - **Rania** - Head of Marketing
 
